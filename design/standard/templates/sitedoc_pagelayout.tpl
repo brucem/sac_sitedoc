@@ -4,28 +4,13 @@
 
     <head>
         <title>SiteDoc</title>
+
         <style type="text/css">
         {foreach ezini( 'StylesheetSettings', 'CSSFileList', 'design.ini' ) as $css_file}
             @import url({concat( 'stylesheets/',$css_file )|ezdesign});
         {/foreach}
         </style>
 
-        <style type="text/css">
-        {literal}
-
-            .ClassInfo {
-                color: white;
-                background: black;
-            }
-            th {
-                text-align: left;
-            }
-
-            .AttributeList {
-                width:100%;
-            }
-        {/literal}
-        </style>
     </head>
     <body>
 
