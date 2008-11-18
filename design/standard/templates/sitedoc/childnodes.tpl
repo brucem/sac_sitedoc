@@ -4,7 +4,7 @@
 }
 <ul>
 {foreach $node_list as $item}
-    <li><span>{$item.name|wash}</span> <a href="#class_{$item.class_identifier|wash}">[{$item.class_name|wash}]</a>
+    <li class="{$item.class_identifier|wash}"><span>{$item.name|wash}</span> <a href="#class_{$item.class_identifier|wash}">[{$item.class_name|wash}]</a>
     {if $item.children_count}{include uri="design:sitedoc/childnodes.tpl" name=$namespace top=$item}{/if}
     </li>
 {/foreach}

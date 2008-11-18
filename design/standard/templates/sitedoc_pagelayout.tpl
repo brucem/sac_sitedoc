@@ -18,12 +18,14 @@
      $indexnode = fetch( 'content', 'node', hash( 'node_id', $indexpage ) ) 
 }
 <h1>SiteDoc</h1>
+
 <h2>SiteMap</h2>
 <ul class="sitemap">
-    <li><span>{$indexnode.name|wash}</span> <a href="#class_{$indexnode.class_identifier|wash}">[{$indexnode.class_name|wash}]</a>
+    <li class="{$indexnode.class_identifier|wash}"><span>{$indexnode.name|wash}</span> <a href="#class_{$indexnode.class_identifier|wash}">[{$indexnode.class_name|wash}]</a>
     {if $indexnode.children_count|gt(0)}{include uri="design:sitedoc/childnodes.tpl" top=$indexnode}{/if}
     </li>
 </ul>
+
 <h2>Classes</h2>
 {def $class_list = fetch('class', 'list', hash())}
 <table border="1">
@@ -45,12 +47,14 @@
                 <th>Name</th>
                 <th>Identifer</th>
                 <th>DataType</th>
+                <th>Required</th>
             </tr>
             {foreach $class.data_map as $attribute}
-                <tr>
+                <tr{if $attribute.is_required} class="required" {/if}>
                     <td>{$attribute.name|wash}</td>
                     <td>{$attribute.identifier|wash}</td>
                     <td>{$attribute.data_type_string|wash}</td>
+                    <td>{$attribute.is_required|choose('No', 'Yes')}</td>
                 </tr>
             {/foreach}
         </table>
