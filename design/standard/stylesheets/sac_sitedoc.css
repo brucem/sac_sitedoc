@@ -1,12 +1,42 @@
-.ClassInfo {
-    color: white;
-    background: black;
+body#sitedoc {
+    font-family: Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #222; 
 }
 
-th {
+.numeric {
+    text-align: right;
+}
+
+.required {
+    font-weight: bold;
+}
+
+dt {
+    font-weight: bold;
+}
+
+#sitedoc h3{
+    border-bottom: 1px solid #555;
+}
+
+table.AttributeList {
+    border: 1px solid #555;
+    border-collapse: collapse;
     text-align: left;
+    width: 90%;
 }
-
-.AttributeList {
-    width:100%;
+table.AttributeList td,
+table.AttributeList th {
+    border: 1px solid #555;
+    padding: 8px 12px;
+}
+table.AttributeList th { font-weight: bold; }
+table.AttributeList thead th {
+    background-color: #dcf1f5;
+    color: #3c423c;
+}
+table.AttributeList tbody th {
+    background-color: #f4fcf0;
+    color: #354042;
 }

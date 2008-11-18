@@ -12,7 +12,7 @@
         </style>
 
     </head>
-    <body>
+    <body id="sitedoc">
 
 {def $indexpage = ezini( 'NodeSettings', 'RootNode', 'content.ini' ) 
      $indexnode = fetch( 'content', 'node', hash( 'node_id', $indexpage ) ) 
@@ -28,40 +28,46 @@
 
 <h2>Classes</h2>
 {def $class_list = fetch('class', 'list', hash())}
-<table border="1">
-<tr>
-    <th>Name</th>
-    <th>Count</th>
-    <th>Container</th>
-</tr>
 {foreach $class_list as $class}
-<tr class="ClassInfo" id="class_{$class.identifier|wash}">
-    <td>{$class.name|wash}</td>
-    <td>{$class.object_count|wash}</td>
-    <td>{$class.is_container|choose('No', 'Yes')}</td>
-</tr>
-<tr>
-    <td colspan="10">
+  <h3>{$class.name|wash}</h3>
+  <dl>
+        <dt>Object Count</dt>
+        <dd>{$class.object_count|wash}</dd>
+        <dt>Container</dt>
+        <dd>{$class.is_container|choose('No', 'Yes')}</dd>
+        <dt>Object Name Pattern</dt>
+        <dd>{$class.contentobject_name|wash}</dd>
+   </dl>
+
         <table class="AttributeList">
+        <thead>
             <tr>
                 <th>Name</th>
                 <th>Identifer</th>
                 <th>DataType</th>
                 <th>Required</th>
+                <th>Searchable</th>
+                <th>Info Collector</th>
+                <th>Translatable</th>
+                {* <th>Attributes</th> *}
             </tr>
+            </thead>
+            <tbody>
             {foreach $class.data_map as $attribute}
                 <tr{if $attribute.is_required} class="required" {/if}>
-                    <td>{$attribute.name|wash}</td>
+                    <th>{$attribute.name|wash}</th>
                     <td>{$attribute.identifier|wash}</td>
                     <td>{$attribute.data_type_string|wash}</td>
                     <td>{$attribute.is_required|choose('No', 'Yes')}</td>
+                    <td>{$attribute.is_searchable|choose('No', 'Yes')}</td>
+                    <td>{$attribute.is_information_collector|choose('No', 'Yes')}</td>
+                    <td>{$attribute.can_translate|choose('No', 'Yes')}</td>
+                    {* <td>{class_attribute_view_gui class_attribute=$attribute}</td> *}
                 </tr>
             {/foreach}
+            </tbody>
         </table>
-    </td>
-</tr>
 {/foreach}
-</table>
 
 {foreach ezini( 'JavaScriptSettings', 'JavaScriptList', 'design.ini' ) as $js_file}
 <script language="JavaScript" type="text/javascript" src={concat( 'javascript/',$js_file )|ezdesign}></script>
