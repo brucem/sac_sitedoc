@@ -5,6 +5,12 @@
     <head>
         <title>SiteDoc</title>
         <style type="text/css">
+        {foreach ezini( 'StylesheetSettings', 'CSSFileList', 'design.ini' ) as $css_file}
+            @import url({concat( 'stylesheets/',$css_file )|ezdesign});
+        {/foreach}
+        </style>
+
+        <style type="text/css">
         {literal}
 
             .ClassInfo {
@@ -67,5 +73,19 @@
 </tr>
 {/foreach}
 </table>
+
+{foreach ezini( 'JavaScriptSettings', 'JavaScriptList', 'design.ini' ) as $js_file}
+<script language="JavaScript" type="text/javascript" src={concat( 'javascript/',$js_file )|ezdesign}></script>
+{/foreach}
+{literal}
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("ul.sitemap").treeview({
+           collapsed: true,
+           persist: "cookie"
+       });
+  });
+</script>
+{/literal}
 </body>
 </html>
