@@ -43,7 +43,7 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Identifer</th>
+                <th>Identifier</th>
                 <th>DataType</th>
                 <th>Required</th>
                 <th>Searchable</th>
